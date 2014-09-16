@@ -1,0 +1,27 @@
+{
+  "name": "iss_node",
+  "version": "0.0.0",
+  "description": "A module that returns a stream based on the position of the International Space Station",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taylorharwin/space-station.git"
+  },
+  "keywords": [
+    "Node",
+    "ISS"
+  ],
+  "author": "Taylor Harwin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taylorharwin/space-station/issues"
+  },
+  "homepage": "https://github.com/taylorharwin/space-station",
+  "devDependencies": {
+    "mocha": "~1.21.4",
+    "chai": "~1.9.1"
+  }
+}
