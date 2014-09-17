@@ -14,6 +14,7 @@ function SpaceStream(id, freq){
   };
   this.readable = true;
   this._stop = false;
+  this.pipe(process.stdout);
   this.openStream();
 }
 
@@ -51,9 +52,12 @@ SpaceStream.prototype.makeHTTPSRequest = function(){
 
     var str = '';
     res.on('data', function(chunk){
-      str+=chunk;
+      str += chunk;
     }).on('end', function(){
-      console.log(str);
+      self.push(str);
+    }).on('error', function(e){
+      console.log(e.message);
+      self.push(null);
     });
   };
   
