@@ -4,7 +4,7 @@
   "description": "A module that returns a stream based on the position of the International Space Station",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "mocha test/index_test.js" 
   },
   "repository": {
     "type": "git",
