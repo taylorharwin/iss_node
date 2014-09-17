@@ -1,4 +1,4 @@
 module.exports = {
-  remoteHost: 'https://api.wheretheiss.at/v1/',
-  remotePath: 'satelites'
+  remoteHost: 'api.wheretheiss.at',
+  remotePath: '/v1/satellites'
 };

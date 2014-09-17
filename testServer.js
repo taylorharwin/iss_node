@@ -1,3 +1,3 @@
-var iss_node = require('./index');
+var SpaceStream = require('./index.js');
 
-iss_node.openSpaceStream(33, 45);
+var bill = new SpaceStream(25544, 59);
