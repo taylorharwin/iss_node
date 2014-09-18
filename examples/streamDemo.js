@@ -1,4 +1,4 @@
-var SpaceStream = require('./index.js');
+var SpaceStream = require('../lib/index');
 
 var sampleStream = new SpaceStream(25544, 59);
 
