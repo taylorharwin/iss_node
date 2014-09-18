@@ -16,7 +16,6 @@ function SpaceStream(id, freq){
 
   this.on('transmissionComplete', function(coords){
     this.push(coords);
-    console.log(coords);
   });
 
   this.on('httpError', function(){
