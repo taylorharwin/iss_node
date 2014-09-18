@@ -1,10 +1,26 @@
 var assert = require("assert");
+var SpaceStream = require('../index.js');
+var stream = require('stream');
 
-describe('Array', function(){
-  describe('#indexOf()', function(){
-    it('should return -1 when the value is not present', function(){
-      assert.equal(-3, [1,2,3].indexOf(5));
-      assert.equal(5, [1,2,3].indexOf(0));
+describe('SpaceStream', function(){
+
+
+  describe('identity', function(){
+
+    var testerStream = new SpaceStream(25554, 59);
+    it('should be a function', function(){
+      assert.equal(typeof SpaceStream, 'function');
+    });
+
+    it('should be subclassed from stream.Readable', function(){
+      assert.equal(testerStream instanceof stream.Readable, true);
     });
   });
+
+
+
+
+
+
+
 });
