@@ -1,5 +1,5 @@
 var assert = require("assert");
-var SpaceStream = require('../index.js');
+var SpaceStream = require('../lib/index.js');
 var stream = require('stream');
 
 describe('SpaceStream', function(){
