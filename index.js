@@ -16,6 +16,9 @@ function SpaceStream(id, freq){
   this._stop = false;
   this.pipe(process.stdout);
   this.openStream();
+  this.on('transmissionComplete', function(){
+    console.log('new Message!');
+  })
 }
 
 util.inherits(SpaceStream, stream.Readable);
@@ -54,6 +57,7 @@ SpaceStream.prototype.makeHTTPSRequest = function(){
     res.on('data', function(chunk){
       str += chunk;
     }).on('end', function(){
+      self.emit('transmissionComplete');
       self.push(str);
     }).on('error', function(e){
       console.log(e.message);
@@ -74,7 +78,6 @@ SpaceStream.prototype.openStream = function() {
     self.makeHTTPSRequest();
   }, self.userParams.freq);
 };
-
 
  module.exports = SpaceStream;
 

@@ -1,7 +1,7 @@
 {
   "name": "iss_node",
   "version": "0.0.0",
-  "description": "A module that returns a stream based on the position of the International Space Station",
+  "description": "A module that returns a readable stream based on the position of the International Space Station",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/index_test.js" 
