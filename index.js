@@ -13,12 +13,21 @@ function SpaceStream(id, freq){
     rejectUnauthorized: false
   };
   this.readable = true;
-  this._stop = false;
-  this.pipe(process.stdout);
+
+  this.on('transmissionComplete', function(coords){
+    this.push(coords);
+    console.log(coords);
+  });
+
+  this.on('httpError', function(){
+    this.push(null);
+  });
+
+  this.on('stopStream', function(){
+    this.push(null);
+  });
+
   this.openStream();
-  this.on('transmissionComplete', function(){
-    console.log('new Message!');
-  })
 }
 
 util.inherits(SpaceStream, stream.Readable);
@@ -57,11 +66,9 @@ SpaceStream.prototype.makeHTTPSRequest = function(){
     res.on('data', function(chunk){
       str += chunk;
     }).on('end', function(){
-      self.emit('transmissionComplete');
-      self.push(str);
+      self.emit('transmissionComplete', str);
     }).on('error', function(e){
-      console.log(e.message);
-      self.push(null);
+      self.emit('httpError', e.message);
     });
   };
   
@@ -69,7 +76,7 @@ SpaceStream.prototype.makeHTTPSRequest = function(){
 };
 
 SpaceStream.prototype.toggleStream = function() {
-  this._stop = !this._stop;
+  this.emit('stopStream');
 };
 
 SpaceStream.prototype.openStream = function() {
