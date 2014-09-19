@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/taylorharwin/space-station.git"
+    "url": "https://github.com/taylorharwin/iss_node.git"
   },
   "keywords": [
     "Node",
@@ -17,9 +17,9 @@
   "author": "Taylor Harwin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/taylorharwin/space-station/issues"
+    "url": "https://github.com/taylorharwin/iss_node/issues"
   },
-  "homepage": "https://github.com/taylorharwin/space-station",
+  "homepage": "https://github.com/taylorharwin/iss_node",
   "devDependencies": {
     "mocha": "~1.21.4",
     "chai": "~1.9.1"
