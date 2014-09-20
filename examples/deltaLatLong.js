@@ -48,7 +48,6 @@ function DeltaLatLong(){
   };
   DeltaLatLong.prototype.setComparitor = function(obj){
     if (this._lastBlip === null){
-      this.emit('initialTransmission');
       this._lastBlip = obj;
       return;
     }
@@ -77,9 +76,11 @@ function DeltaLatLong(){
     };
   };
 
-var originalStream = new SpaceStream(25544, 20);
+var originalStream = new SpaceStream(25544, 59);
 var newStream = new DeltaLatLong();
 
 originalStream.pipe(newStream).pipe(process.stdout);
+
+
 
 
