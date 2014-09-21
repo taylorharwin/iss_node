@@ -2,7 +2,7 @@
 //The transform function adds two properties: change in longitude per second (deltaLat), and change in latitude per second (deltaLong).
 //These are calculated based on the difference between each current response's coordinates and the coordinates of the response preceeding it.
 //Time values are calculated using the timestamp property of each response object.
-//The initial response in a new stream will have its deltaLat and deltaLong properties set to null.
+//The initial response in a new stream will be piped, and will have its deltaLat and deltaLong properties set to null.
 
 var SpaceStream = require('../lib/index');
 var util = require('util');
@@ -49,7 +49,7 @@ function DeltaLatLong(){
   DeltaLatLong.prototype.setComparitor = function(obj){
     if (this._lastBlip === null){
       this._lastBlip = obj;
-      return;
+      return false;
     }
     this._lastBlip = obj;
     return this._lastBlip;
