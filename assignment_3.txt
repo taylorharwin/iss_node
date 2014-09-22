@@ -1,0 +1,40 @@
+Documentation: Batch Module
+
+This module exports a constructor function called "Batch". The constructor takes one argument, 'sync', which should be a boolean. If a Batch is instantiated without using the "new" keyword, that keyword will be added anyway as a curtesy to the developer.
+
+Batch objects have 3 instance properties:
+
+sync: a user-provided boolean for whether 
+jobs: an array of functions
+frame: an individual frame in an animation (initialized as null)
+
+
+Batch objects have 4 prototype methods:
+
+queue: a function that takes a function as its argument, and adds it to the jobs array. If the sync property is false, the queue function will also call request_frame(), which is described below.
+
+run: a function that iterates over the jobs array, calling each function in turn.
+    -This function can only be called in the context of the specific Batch instance.
+    -For example, batch1.run.apply(batch2, args ) // processes all jobs for batch1, not batch2
+
+
+
+request_frame: A function that takes no arguments. It first checks whether there is a frame in place. If there isn't one (i.e., no animation is in place), the function returns.
+
+Otherwise, it assigns the frame in place to the output of calling requestAnimationFrame, a function which calls this.run as a callback upon completion.
+
+
+
+
+
+run:
+
+Bugs:
+
+1. requestAnimationFrame: 
+  Unless there is a "global" object available to the environment where this module is loaded, there will be an error when looking for browser-specific functions on the "global" object. It seems like "window" could potentially be the object to reference in this check.
+
+
+Style:
+
+1. Duplicated Function Names: This Javascript contains two sets of function expressions with the names "run" and "queue". Since they are declared in different scopes, they won't collide, but it might help with future bug investigation to give them different names. I suggest that the functions declared within 
