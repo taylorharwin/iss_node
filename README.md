@@ -2,9 +2,9 @@ iss_node
 ========
 iss_node is a module that generates a readable stream based on a given satellite's location in orbit. All data comes from the wheretheiss.at API: [http://wheretheiss.at/w/developer]( http://wheretheiss.at/w/developer), and is wrapped using Node's stream.Readable API.
 
-You might use this stream to visualize the position of a given satelite at any time in a client application, or to generate Tweets whenever a satellite passes a certain location. These use-cases are available at [http://wheretheiss.at/](http://wheretheiss.at/).
-
 This project was an exercise in learning about the Node streaming API. It works, and has test coverage, but there may be bugs. Please submit pull requests for any issues you may come across.
+
+This repo also contains documentation for a Batch animation class, unrelated to ISS. This documentation is in assignment_3.md
 
 ##Installation 
 
@@ -13,7 +13,9 @@ This project was an exercise in learning about the Node streaming API. It works,
 1. Clone this repository locally and `cd` into it
 2. Type `npm pack`, which will create a .tgz of the repo in the same directory
 3. `cd` to the top-level directory for your project where you are using iss_node
-4. Type `npm install path/to/filename.tgz`, which will install the module in your node_modules folder, or create the folder if none exists.
+4. Type `npm install path/to/filename.tgz`, which will install the module in your node_modules folder, or it will create the folder if none exists.
+
+5. You can equally run the example files within this repo. from your command line.
 
 ###Use
 
@@ -26,13 +28,13 @@ A stream takes two parameters:
 
 ###Examples
 
-1. streamDemo.js --- Creates a new stream for the ISS (25544), makes requests 59 times/minute, and then pipes the result to process.stdout
+1. streamDemo.js --- Creates a new stream for the ISS (25544), makes requests 30 times/minute, and pipes the result to process.stdout
 2. deltaLatLong.js --- Implements a Transform stream that changes a satelite location object into a new object that shows the rate of change per minute of latitude, as well as the rate of change per minute of longitude. Calculation details are in the file. 
 
 ###Tests
 (Assumes you have mocha installed globally)
 
-Tests for this module are written in Mocha, and can be run from the top level of the iss_node directory with:
+Tests for this module are written in Mocha, are located in the test/ directory, and can be run from the top level of the iss_node directory with:
 `npm test`
 
 ###Contact
