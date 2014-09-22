@@ -1,5 +1,5 @@
 //An implementation of SpaceStream that produces a transform stream, which pipes to process.stdout.
-//The transform function adds two properties: change in longitude per second (deltaLat), and change in latitude per second (deltaLong).
+//The transform function adds two properties: change in latitude per second (deltaLat), and change in longitude per second (deltaLong).
 //These are calculated based on the difference between each current response's coordinates and the coordinates of the response preceeding it.
 //Time values are calculated using the timestamp property of each response object.
 //The initial response in a new stream will be piped, and will have its deltaLat and deltaLong properties set to null.
