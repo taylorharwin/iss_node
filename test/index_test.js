@@ -64,7 +64,7 @@ describe('SpaceStream', function () {
     describe('timing', function(){
 
         it('should not receive data before data is expected', function(done){
-            this.timeout(2000);
+            this.timeout(3000);
 
             var timesDataReceived = 0;
             var f = new SpaceStream(25544, 30);
