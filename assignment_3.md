@@ -25,7 +25,7 @@ Batch objects have 4 prototype methods:
 
 - **add(fn)**: a function that takes a function as its argument. It does work to this function, then passes a transformed version of it to the queue method described aboved, to be called with its original arguments and in the correct context. An internal flag keeps track of the function having been called. If it hasn't been called before, it will be added to the jobs list. Afterward, it will execute in the request_frame loop, but can't be re-added to the Jobs list.
 
-Batch also makes a free function available to the global scope, called *requestAnimationFrame*. 
+Batch also makes a free function available to the global object, called *requestAnimationFrame*. 
 
 - **requestAnimationFrame(callback)**: A free function that takes a callback, looks up the appropriate "requestAnimationFrame" function for a given browser, and then invokes that function, passing it the callback. It's essentially a browser shim. If a version of requestAnimationFrame is not available, the callback gets executed after a delay of about .16 seconds (i.e., 60 frames/second). requestAnimationFrame creates a persistent loop, much like setInterval, but optimized for web animations. For more documentation on this API, see:
     - [https://developer.mozilla.org/en/docs/Web/API/window.requestAnimationFrame](https://developer.mozilla.org/en/docs/Web/API/window.requestAnimationFrame)
