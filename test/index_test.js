@@ -41,7 +41,7 @@ describe('SpaceStream', function () {
     });
 
     describe('expected data retrieval behavior', function () {
-        this.timeout(2000);
+        this.timeout(4000);
 
         var receivedData = false;
         var e = new SpaceStream(25544, 55);
