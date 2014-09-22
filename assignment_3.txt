@@ -1,29 +1,37 @@
 Documentation: Batch Module
 
-This module exports a constructor function called "Batch". The constructor takes one argument, 'sync', which should be a boolean. If a Batch is instantiated without using the "new" keyword, that keyword will be added anyway as a curtesy to the developer.
+This module exports a constructor function called "Batch". The purpose of a batch is to schedule multiple display-related events in a way that maintains a smooth frame rate in the browser. 
+
+The constructor takes one argument, 'sync', which should be a boolean representing whether animation-related events are meant to occur synchronously or asynchronously. If a batch is instantiated without using the "new" keyword, that keyword will be added anyway as a curtesy to the developer. 
 
 Batch objects have 3 instance properties:
 
-sync: a user-provided boolean for whether 
-jobs: an array of functions
-frame: an individual frame in an animation (initialized as null)
+sync: a user-provided boolean representing whether animations are meant to happen step-by-step, or all at once
+jobs: an array of functions (i.e., [drawCircle(),drawSquare(), drawTriangle()])
+frame: an variable used to reference the current frameID in an animation loop (initialized as null)
 
 
 Batch objects have 4 prototype methods:
 
-queue: a function that takes a function as its argument, and adds it to the jobs array. If the sync property is false, the queue function will also call request_frame(), which is described below.
 
-run: a function that iterates over the jobs array, calling each function in turn.
+add: a function that takes a function as its argument.
+
+queue: a function that takes a function as its argument, and adds the function to the jobs array. If the sync property is false (i.e., if events are meant to all happpen at once), the queue function will also call request_frame(), which will reinitiate the animation loop with the new function included.
+
+run: a function that iterates over the jobs array, calling each function in turn, and resets the this.jobs array back to an empty array
     -This function can only be called in the context of the specific Batch instance.
     -For example, batch1.run.apply(batch2, args ) // processes all jobs for batch1, not batch2
 
+request_frame: A function that takes no arguments. It first checks whether there is a frame to reference. If there is one (i.e., an animation is running), the function returns. If there isn't one, the function kicks off the event loop-- meaning it calls this.run() inside of an "requestAnimationFrame" loop in order to call all the functions in this.jobs. It also  saves a reference to the current frame in this.frame.
 
-
-request_frame: A function that takes no arguments. It first checks whether there is a frame in place. If there isn't one (i.e., no animation is in place), the function returns.
+add: a function
 
 Otherwise, it assigns the frame in place to the output of calling requestAnimationFrame, a function which calls this.run as a callback upon completion.
 
 
+Batch also makes a free function available to the global scope, called requestAnimationFrame. 
+
+requestAnimationFrame: A free function that takes a callback, looks up the appropriate "requestAnimationFrame" function for a given browser, and then invokes that function, passing it the callback. It's essentially a browser shim. If a version of requestAnimationFrame is not available, the callback gets executed after a delay of about .16 seconds (60 frames/second). requestAnimationFrame creates a persistent loop, much like setInterval, but optimized for web animations.For more documentation on this API, see http://css-tricks.com/using-requestanimationframe/
 
 
 
@@ -31,8 +39,9 @@ run:
 
 Bugs:
 
-1. requestAnimationFrame: 
-  Unless there is a "global" object available to the environment where this module is loaded, there will be an error when looking for browser-specific functions on the "global" object. It seems like "window" could potentially be the object to reference in this check.
+1. requestAnimationFrame: Line 72
+  Unless there is a "global" object available to the environment where this module is loaded, there will be an error when looking for browser-specific functions on the "global" object. "window" is probably the object to reference in this check.
+
 
 
 Style:
