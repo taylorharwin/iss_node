@@ -20,7 +20,7 @@ This project was an exercise in learning about the Node streaming API. It works,
 Require the module, and set it equal to a constructor, i.e: `var SpaceStream = require('iss_node')`
 A stream takes two parameters: 
 1. Satelite ID (the NORAD id for a satelite: They are available at http://www.celestrak.com/pub/satcat.txt)
-2. Frequence (The number of times per minute to request new data from the wheretheiss.at API: e.g. 30 = one request every .5 seconds, .5 equals one request every two minutes. Must be greater than 0, less than 60).
+2. Frequency (The number of times per minute to request new data from the wheretheiss.at API: e.g. 30 = one request every .5 seconds, .5 equals one request every two minutes. Must be greater than 0, less than 60).
 3. Consume the stream however you wish. Please refer to Node's documentation for more info: [http://nodejs.org/api/stream.html](http://nodejs.org/api/stream.html).
 4. Refer to the two examples in the "examples" folder for more implementation details. 
 
@@ -32,7 +32,7 @@ A stream takes two parameters:
 ###Tests
 (Assumes you have mocha installed globally)
 
-Tests for this module are written in Mocha, and can be run from inside the iss_node directory with:
+Tests for this module are written in Mocha, and can be run from the top level of the iss_node directory with:
 `npm test`
 
 ###Contact
