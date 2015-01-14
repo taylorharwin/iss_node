@@ -4,8 +4,6 @@ iss_node is a module that generates a readable stream based on a given satellite
 
 This project was an exercise in learning about the Node streaming API. It works, and has test coverage, but there may be bugs. Please submit pull requests for any issues you may come across.
 
-This repo also contains documentation for a Batch animation class, unrelated to ISS. This documentation is in assignment_3.md
-
 ##Installation 
 
 (Assumes you have Node and NPM installed)
